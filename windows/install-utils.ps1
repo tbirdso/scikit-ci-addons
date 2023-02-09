@@ -11,11 +11,11 @@ param (
   $securityProtocolSettingsOriginal = [System.Net.ServicePointManager]::SecurityProtocol
 
   try {
-    # Set TLS 1.2, then TLS 1.1, then TLS 1.0.
+    # Set TLS 1.2, then TLS 1.1.
     # See https://learn.microsoft.com/en-us/dotnet/api/system.net.securityprotocoltype?view=net-7.0
-    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12 -bor [System.Net.SecurityProtocolType]::Tls11 -bor [System.Net.SecurityProtocolType]::Tls
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12 -bor [System.Net.SecurityProtocolType]::Tls11
   } catch {
-    Write-Warning "Unable to set PowerShell to use TLS 1.2, TLS 1.1, and TLS 1.0. "`
+    Write-Warning "Unable to set PowerShell to use TLS 1.2 and TLS 1.1. "`
       "This may occur because your PowerShell's .NET version does not support one of these protocols."`
       "If you see underlying connection closed or trust errors, you may need to manually configure the"`
       "PowerShell security protocol or use a different PowerShell version. "`
