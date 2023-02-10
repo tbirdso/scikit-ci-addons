@@ -34,9 +34,10 @@ if (![System.IO.File]::Exists("$downloadDir\install-utils.ps1")) {
       "See https://learn.microsoft.com/en-us/dotnet/api/system.net.securityprotocoltype?view=net-6.0 for protocol types."
   }
 
-  Write-Host "Download install-utils.ps1"
   $url = "https://raw.githubusercontent.com/scikit-build/scikit-ci-addons/master/windows/install-utils.ps1"
+  Write-Host "Download $url"
   (new-object net.webclient).DownloadFile($url, "$downloadDir\install-utils.ps1")
+  type "$downloadDir\install-utils.ps1"
 
   [System.Net.ServicePointManager]::SecurityProtocol = $securityProtocolSettingsOriginal
 }
